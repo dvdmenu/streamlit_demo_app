@@ -1,6 +1,7 @@
 import streamlit as sl
 import pandas as pd
 
+#read data
 df = pd.read_csv('https://raw.githubusercontent.com/dvdmenu/streamlit_demo_app/main/P4-Movie-Ratings.csv')
 
 df.head()
