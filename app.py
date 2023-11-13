@@ -12,11 +12,11 @@ sl.write("TBA: Some explanatory stuff")
 #this will create a scrollable window for the dataframe
 sl.write(df)
 
-
-
+# bar chart on audience ratings compared to budget
 sl.bar_chart(data=df, x='Audience Ratings %', y='Budget (million $)', use_container_width=True)
 
 
-
 sl.write("Relationship between critic and audience ratings:")
+
+# scatter plot that examines the rating relationship. Needs regression line and P-tests values.
 sl.scatter_chart(data=df, x='Rotten Tomatoes Ratings %', y='Audience Ratings %', use_container_width=True)
