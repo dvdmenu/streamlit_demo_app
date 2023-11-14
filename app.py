@@ -16,7 +16,7 @@ sl.header("Feature engineering: Adding inflation corrected budgets to the datafr
 sl.write("Here is a complete procedure of adjusting movie budgets for inflation using World Bank inflation data. Be adviced that a fully working, self-updating Python CPI library exists. You should definitely take advantage of it. In this project, AFI feature was done manually for learning experience. https://pypi.org/project/cpi/")
 
 code = '''
-#  inflation rate chart downloeaded from consumer price index, filtered by USA.
+#  inflation rate chart downloaded from consumer price index, filtered by USA.
 # base period 2010 = 100. This means that if 2011 CPI equals 115, prices have gone up 15 % from 2010. 
 # link https://databank.worldbank.org/reports.aspx?source=2&series=FP.CPI.TOTL&country=USA#
 
@@ -58,11 +58,11 @@ df.rename(columns={'InflationRate': 'inflation_rate'}, inplace=True)
 
 sl.code(code, language='python', line_numbers=True)
 
-#  inflation rate chart downloeaded from consumer price index, filtered by USA.
+#  inflation rate chart downloaded from consumer price index, filtered by USA.
 # base period 2010 = 100. This means that if 2011 CPI equals 115, prices have gone up 15 % from 2010. 
 # link https://databank.worldbank.org/reports.aspx?source=2&series=FP.CPI.TOTL&country=USA#
 
-infl = pd.read_excel('inflation_yearly.xlsx')
+infl = pd.read_excel('https://raw.githubusercontent.com/dvdmenu/streamlit_demo_app/main/inflation_yearly.xlsx')
 
 
 # get rid of unnecessary rows and columns
