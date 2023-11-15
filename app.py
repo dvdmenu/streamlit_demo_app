@@ -1,5 +1,6 @@
 import streamlit as sl
 import pandas as pd
+import numpy as np
 
 #read data
 df = pd.read_csv('https://raw.githubusercontent.com/dvdmenu/streamlit_demo_app/main/P4-Movie-Ratings.csv')
@@ -101,6 +102,30 @@ sl.write(df)
 
 
 
+sl.header("Movie Budgets per Year")
+
+
+
+
+
+which_budget_button = sl.radio(
+    "Show:",
+    [":Budget mean (million $)", "***Added Inflation Adjusted Budget mean (million $)***"],
+    captions = ["Nominal budget means", "Nominal budget means and inflation adjusted means by yearly CPI index of USA"])
+
+
+if which_budget_button == ':Budget mean (million $)':
+    selected_variable = df.groupby('Year of release').agg({'Budget (million $)': 'mean'})
+else:
+    selected_variable = df.groupby('Year of release').agg({'Budget (million $)': 'mean', 'Budget (million $) AFI': 'mean'})
+    
+
+sl.write(selected_variable)
+
+
+sl.line_chart(selected_variable)
+
+
 
 # --------
 
@@ -108,10 +133,10 @@ sl.write(df)
 # sl.bar_chart(data=df, x='Audience Ratings %', y='Budget (million $)', use_container_width=True)
 
 
-sl.write("Relationship between critic and audience ratings:")
+# sl.write("Relationship between critic and audience ratings:")
 
 # scatter plot that examines the rating relationship. Needs regression line and P-tests values.
-sl.scatter_chart(data=df, x='Rotten Tomatoes Ratings %', y='Audience Ratings %', use_container_width=True)
+# sl.scatter_chart(data=df, x='Rotten Tomatoes Ratings %', y='Audience Ratings %', use_container_width=True)
 
 
 
