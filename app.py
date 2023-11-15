@@ -6,19 +6,21 @@ df = pd.read_csv('https://raw.githubusercontent.com/dvdmenu/streamlit_demo_app/m
 
 df.head()
 
-sl.title("Insights: Rotten Tomatoes movie data from 2007 to 2011")
+sl.title("Insights: Rotten Tomatoes Movie Data from 2007 to 2011")
 sl.write("TBA: Some explanatory stuff")
 
 #this will create a scrollable window for the dataframe
 sl.write(df)
 
-sl.header("Feature engineering: Adding inflation corrected budgets to the dataframe")
-sl.write("Here is a complete procedure of adjusting movie budgets for inflation using World Bank inflation data. Be adviced that a fully working, self-updating Python CPI library exists. You should definitely take advantage of it. In this project, AFI feature was done manually for learning experience. https://pypi.org/project/cpi/")
+sl.header("Feature engineering: Adding Yearly Inflation Correction to your Pandas Dataframe")
+sl.write("Here is a complete procedure of adjusting movie budgets for inflation using World Bank inflation data. Be adviced that a fully working, self-updating Python CPI library exists. You should definitely take advantage of it. https://pypi.org/project/cpi/ \n In this project, AFI feature was executed manually for learning experience. You can apply this procedure to your project, mutatis mutandis.")
 
 code = '''
 #  inflation rate chart downloaded from consumer price index, filtered by USA.
 # base period 2010 = 100. This means that if 2011 CPI equals 115, prices have gone up 15 % from 2010. 
 # link https://databank.worldbank.org/reports.aspx?source=2&series=FP.CPI.TOTL&country=USA#
+
+# remember to export pandas as pd
 
 infl = pd.read_csv('https://raw.githubusercontent.com/dvdmenu/streamlit_demo_app/main/inflation_rates.csv')
 
