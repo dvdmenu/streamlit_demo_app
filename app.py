@@ -7,14 +7,18 @@ df = pd.read_csv('https://raw.githubusercontent.com/dvdmenu/streamlit_demo_app/m
 
 df.head()
 
-sl.title("Insights: Rotten Tomatoes Movie Data from 2007 to 2011")
-sl.write("TBA: Some explanatory stuff")
+sl.title("Feature engineering: Adding Yearly Inflation Adjustment to your Pandas Dataframe")
+sl.write("Here is a complete procedure of adjusting movie budgets for inflation using World Bank inflation data. Below you can see my example dataset. It is a movie dataset from Rotten Tomatoes 2007-2011. It has nominal movie budget (in million $) that we will complement with an Inflation Adjusted Budget. Altough the unit is one million dollar and not one dollar, the same procedure can be applied to the latter case without any modifications.")
 
 #this will create a scrollable window for the dataframe
 sl.write(df)
 
-sl.header("Feature engineering: Adding Yearly Inflation Correction to your Pandas Dataframe")
-sl.write("Here is a complete procedure of adjusting movie budgets for inflation using World Bank inflation data. Be adviced that a fully working, self-updating Python CPI library exists. You should definitely take advantage of it. https://pypi.org/project/cpi/ \n In this project, AFI feature was executed manually for learning experience. You can apply this procedure to your project, mutatis mutandis.")
+sl.header("Downloading and applying World Bank Inflation Data to your dataset")
+sl.write("Here is a complete procedure of adjusting movie budgets for inflation using World Bank inflation data. Be adviced that a fully working, self-updating Python CPI library exists. You should definitely take advantage of it, especially if you need daily inflation adjustment. https://pypi.org/project/cpi/") 
+
+sl.write("In this project, AFI feature was executed manually, matching the datasets by Year values. You can apply this procedure to your project, mutatis mutandis.")
+         
+        # Be adviced that a fully working, self-updating Python CPI library exists. You should definitely take advantage of it. https://pypi.org/project/cpi/ \n In this project, AFI feature was executed manually for learning experience. You can apply this procedure to your project, mutatis mutandis.
 
 code = '''
 #  inflation rate chart downloaded from consumer price index, filtered by USA.
@@ -58,7 +62,6 @@ df.rename(columns={'InflationRate': 'inflation_rate'}, inplace=True)
 
 '''
 
-
 sl.code(code, language='python', line_numbers=True)
 
 #  inflation rate chart downloaded from consumer price index, filtered by USA.
@@ -98,15 +101,13 @@ df = df[desired_order]
 df.rename(columns={'inflation_adjusted_budget': 'Budget (million $) AFI'}, inplace=True)
 df.rename(columns={'InflationRate': 'inflation_rate'}, inplace=True)
 
+sl.write("Here is the resulting DataFrame with a new 'Budget (million $) AFI' column.")
+
 sl.write(df)
 
 
 
-sl.header("Movie Budgets per Year")
-
-
-
-
+sl.header("Comparing nominal and Inflation Adjusted Budgets")
 
 which_budget_button = sl.radio(
     "Show:",
@@ -121,7 +122,6 @@ else:
     
 
 sl.write(selected_variable)
-
 
 sl.line_chart(selected_variable)
 
